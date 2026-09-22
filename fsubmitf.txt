@@ -1,0 +1,7 @@
+1 sed -E 's/>.*\|([0-9][0-9][0-9]-[0-9][0-9][0-9]).+GN=([A-Za-z]+).*$/>\2_\1/' HK_domain.faa > out_1.fna
+2 sed -E 's/^>.*\|([0-9][0-9][0-9]-[0-9][0-9][0-9]).* ([A-Za-z]+).*OS=.*/\2_\1/' HK_domain.faa > output2.fn
+4 grep -oE '(^|,)[A-Za-z0-9_.]+:' Tree_of_life.nwk > out_4.txt
+5 grep -oE ':[0-9]+(\.[0-9]+)?' Tree_of_life.nwk | sed -E 's/^://' | awk '{sum += $1} END {print sum}' > out_5.txt
+6 find -E find_data -regex 'find_data/[a-z][^/]*\.(fa|fasta)' | wc -l > out_6.txt
+7 find -E find_data -regex 'find_data/[A-Z][^/]*\.(fa|fasta)' | wc -l > out_7.txt
+8 find -E find_data -regex 'find_data/[a-z][^/]*\.(fa|fasta)' -exec cp {} genes/ \; ; find -E find_data -regex 'find_data/[A-Z][^/]*\.(fa|fasta)' -exec cp {} proteins/ \;
